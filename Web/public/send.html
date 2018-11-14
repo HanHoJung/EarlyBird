@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+    <style>
+        html,
+        body {
+            display: table;
+            width: 100%;
+            height: 100%;
+            font-family: 'Nunito', sans-serif;
+            background-color: rgb(250, 236, 0);
+            color: rgb(57, 0, 0);
+        }
+        
+        .ryan_outter {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 50px;
+            zoom: 0.6;
+        }
+        
+        .ryan_inner {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .ears {
+            position: absolute;
+            left: 120px;
+            margin-left: -60px;
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            border: 10px solid black;
+            background-color: rgb(228, 152, 0);
+            box-sizing: border-box;
+        }
+        
+        .ears:after {
+            content: "";
+            position: absolute;
+            left: 260px;
+            margin-left: -10px;
+            margin-top: -10px;
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            border: 10px solid black;
+            background-color: rgb(228, 152, 0);
+            box-sizing: border-box;
+        }
+        
+        .ears_shadow {
+            position: absolute;
+            left: 70px;
+            margin-left: -60px;
+            width: 90px;
+            height: 90px;
+            border-radius: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        
+        .ears_shadow_2 {
+            content: "";
+            position: absolute;
+            left: 405px;
+            top: 10px;
+            margin-left: -60px;
+            width: 90px;
+            height: 90px;
+            border-radius: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        
+        .face {
+            position: absolute;
+            top: 15px;
+            width: 500px;
+            height: 500px;
+            border-radius: 100%;
+            border: 10px solid;
+            border-color: black;
+            background-color: rgb(228, 152, 0);
+            box-sizing: border-box;
+        }
+        
+        .face_shadow {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            width: 460px;
+            height: 460px;
+            border-radius: 100% 100% 90% 90%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .eyebrows {
+            position: absolute;
+            left: 140px;
+            top: 180px;
+            margin-left: -50px;
+            margin-top: -10px;
+            width: 100px;
+            height: 15px;
+            border-radius: 15px;
+            background-color: black;
+        }
+        
+        .eyebrows:after {
+            content: "";
+            position: absolute;
+            left: 200px;
+            width: 100px;
+            height: 15px;
+            border-radius: 15px;
+            background-color: black;
+        }
+        
+        .eyes {
+            position: absolute;
+            left: 140px;
+            top: 220px;
+            margin-left: -15px;
+            margin-top: -15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: black;
+        }
+        
+        .eyes::after {
+            content: "";
+            position: absolute;
+            left: 200px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background-color: black;
+        }
+        
+        .mouth {
+            position: absolute;
+            left: 240px;
+            top: 330px;
+            margin-left: -92.5px;
+            margin-top: -50px;
+            width: 185px;
+            height: 100px;
+        }
+        
+        .mouth_part1 {
+            position: absolute;
+            width: 105px;
+            height: 105px;
+            border-radius: 100%;
+            border: 10px solid black;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .mouth_part1:after {
+            content: "";
+            position: absolute;
+            left: 80px;
+            margin-left: -10px;
+            margin-top: -10px;
+            width: 105px;
+            height: 105px;
+            border-radius: 100%;
+            border: 10px solid black;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .mouth_part2 {
+            position: absolute;
+            left: 50%;
+            top: 1px;
+            margin-left: -30px;
+            width: 60px;
+            height: 78px;
+            border-top: 10px solid black;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .nose {
+            position: absolute;
+            left: 240px;
+            top: 290px;
+            margin-left: -25px;
+            margin-top: -25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 100% 50% 50%;
+            background-color: black;
+            transform: rotate(45deg);
+        }
+        
+        .text {
+            margin-top: 520px;
+            width: 500px;
+        }
+        
+        .text>h1 {
+            margin: 0;
+            font-size: 40px;
+            text-align: center;
+        }
+        
+        .text>p {
+            margin: -30px 0 0 0;
+            font-size: 120px;
+            font-weight: 700;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <div class="ryan_outter">
+        <div class="ryan_inner">
+            <div class="ears">
+                <div class="ears_shadow">
+                </div>
+            </div>
+            <div class="ears_shadow_2">
+            </div>
+
+            <div class="face">
+                <div class="face_shadow">
+                </div>
+
+                <div class="eyebrows">
+                </div>
+                <div class="eyes">
+                </div>
+                <div class="mouth">
+                    <div class="mouth_part1">
+                    </div>
+                    <div class="mouth_part2">
+                    </div>
+                </div>
+                <div class="nose">
+                </div>
+            </div>
+            <div class="text">
+                <h1>미세먼지를 친구와 공유하기!</h1>
+                <h1>EARLY BIRD</h1>
+            </div>
+            <div>
+
+                <a id="kakao-link-btn" href="javascript:;">
+                    <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+                </a>
+
+            </div>
+        </div>
+
+
+
+        <script type='text/javascript'>
+            //<![CDATA[
+            // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+
+
+            Kakao.init('cc781e7e3a67ea81b67b4ac86c039462');
+            // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+            Kakao.Link.createCustomButton({
+                container: '#kakao-link-btn',
+                templateId: 11422,
+                templateArgs: {
+                    'title': '제목 영역입니다.',
+                    'description': '설명 영역입니다.'
+                }
+            });
+
+
+            $(document).ready(function() {
+                document.getElementById("kakao-link-btn").click();
+
+            });
+            //]]>
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+</head>
+
+
+<body>
+
+    <div id="mapid" style="height:100%;"></div>
+    <script>
+    
+    var lat =<%-LATITUDE %>;
+    var lng =<%-LONGITUDE %>;
+    
+        var zoom = 17;
+        var mymap = L.map('mapid', {
+            center: [lat, lng],
+            zoom: zoom
+        });
+
+        
+        var marker = L.marker([lat, lng]).addTo(mymap);
+       
+       var step = [{
+        msg: "좋음 0~15(㎍/㎥)",
+        color: "skyblue",
+        back_color: "#87CEEB"
+    },
+    {
+        msg: "보통 15~35(㎍/㎥)",
+        color: "grren",
+        back_color: "#4ca64c"
+    },
+    {
+        msg: "나쁨 35~75(㎍/㎥)",
+        color: "yellow",
+        back_color: "#e5e500"
+
+
+    },
+    {
+        msg: "매우나쁨 75~(㎍/㎥)",
+        color: "red",
+        back_color: '#f03'
+    }
+];
+ 
+        
+        L.tileLayer('http://xdworld.vworld.kr:8080/2d/Base/201710/{z}/{x}/{y}.png').addTo(mymap);
+        var distance = 0.001;
+        var result = <%-result %>
+        
+        
+
+       
+       for(var i=0; i<result.length; i++){
+             result[i].circle = L.circle([result[i].lat,result[i].lng],{
+                 color:step[result[i].step].color,
+                 fillColor:step[result[i].step].back_color,
+                 fillOpacity: 0.5,
+                 radius: 30
+             });
+
+             result[i].msg = step[result[i].step].msg;
+            }
+        for (i = 0; i < result.length; i++) {
+            result[i].circle.addTo(mymap);
+
+
+        }
+        for (i = 0; i < result.length; i++) {
+            result[i].circle.bindPopup(result[i].msg);
+        }
+
+   
+    </script>
+</body>
+
+</html>

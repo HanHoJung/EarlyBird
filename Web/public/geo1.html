@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <title>D3 Map & GeoIP</title>
+
+
+    <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+
+    <link rel="stylesheet" href="./public/css/style1.css">
+
+
+
+    <style>
+        html,
+        body,
+        div {
+            /* Height and width fallback for older browsers. */
+            height: 100%;
+            width: 100%;
+            /* Set the height to match that of the viewport. */
+            height: 100vh;
+            /* Set the width to match that of the viewport. */
+            width: 100vw;
+            /* Remove any browser-default margins. */
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h4>Your location is: <span class="city"></span></h4>
+    <div id="container"></div>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+
+
+
+    <script src="./public/js/index1.js"></script>
+
+
+
+
+</body>
+
+</html>

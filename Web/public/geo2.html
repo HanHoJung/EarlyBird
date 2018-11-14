@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+</head>
+
+
+<body>
+    <div id="mapid" style="height:100%;"></div>
+    <script>
+        var lat = 37.602604;
+        var lng = 126.955155;
+        var zoom = 17;
+        var mymap = L.map('mapid', {
+            center: [lat, lng],
+            zoom: zoom
+        });
+        L.tileLayer('http://xdworld.vworld.kr:8080/2d/Base/201710/{z}/{x}/{y}.png').addTo(mymap);
+
+        // var marker = L.marker([lat, lng]).addTo(mymap);
+
+        // var distance = 0.001;
+        var fill = ['#f03', "#e5e500", "#4ca64c", "#87CEEB"]
+
+        function GeoObject(name, lat, lng, color, fillColor, msg) {
+            this.name = name,
+                this.lat = lat,
+                this.lng = lng,
+                this.circle = L.circle([lat, lng], {
+                    color: color,
+                    fillColor: fillColor,
+                    fillOpacity: 0.5,
+                    radius: 30
+                }),
+                this.msg = msg;
+        }
+
+
+        var geoArray = [];
+        geoArray.push(new GeoObject("상명대학교 서울캠퍼스", 37.602604, 126.955155, "red", fill[0], "매우나쁨 151(㎍/㎥"));
+        geoArray.push(new GeoObject("상명대학교 중앙도서관", 37.602224, 126.955239, "yellow", fill[1], "나쁨 81~150(㎍/㎥"));
+        geoArray.push(new GeoObject("상명대학교 학생회관", 37.602039, 126.954217, "green", fill[2], "보통 31~80(㎍/㎥"));
+        geoArray.push(new GeoObject("상명대학교 학생회관", 37.603274, 126.953639, "skyblue", fill[3], "좋음 0~30(㎍/㎥"));
+
+        for (i = 0; i < geoArray.length; i++) {
+            geoArray[i].circle.addTo(mymap);
+
+
+        }
+        for (i = 0; i < geoArray.length; i++) {
+            geoArray[i].circle.bindPopup(geoArray[i].msg);
+        }
+    </script>
+</body>
+
+</html>
